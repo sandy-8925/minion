@@ -21,14 +21,61 @@
 package org.sanpra.minion;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import com.facebook.Session;
+import com.facebook.SessionState;
+import com.facebook.UiLifecycleHelper;
 
 public class FacebookAccountLoginActivity extends Activity
 {
+
+    private Session.StatusCallback callback = new Session.StatusCallback() {
+        @Override
+        public void call(Session session, SessionState state, Exception exception) {
+        }
+    };
+
+    private UiLifecycleHelper uiLifecycleHelper;
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
+        uiLifecycleHelper = new UiLifecycleHelper(this, callback);
+        uiLifecycleHelper.onCreate(savedInstanceState);
+
         setContentView(R.layout.main);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        uiLifecycleHelper.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        uiLifecycleHelper.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        uiLifecycleHelper.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        uiLifecycleHelper.onDestroy();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        uiLifecycleHelper.onActivityResult(requestCode, resultCode, data);
     }
 }
