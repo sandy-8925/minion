@@ -34,6 +34,7 @@ import com.facebook.widget.ProfilePictureView;
 
 public final class FacebookAccountLoginActivity extends Activity
 {
+    //TODO: Need to handle screen rotation
     private ProfilePictureView profilePicView;
 
     private Request.GraphUserCallback profilePicDisplayCallback = new Request.GraphUserCallback() {
