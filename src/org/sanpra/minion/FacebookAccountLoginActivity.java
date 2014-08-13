@@ -32,7 +32,7 @@ import com.facebook.UiLifecycleHelper;
 import com.facebook.model.GraphUser;
 import com.facebook.widget.ProfilePictureView;
 
-public class FacebookAccountLoginActivity extends Activity
+public final class FacebookAccountLoginActivity extends Activity
 {
     private ProfilePictureView profilePicView;
 
