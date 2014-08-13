@@ -49,6 +49,7 @@ public final class FacebookAccountLoginActivity extends Activity
         @Override
         public void call(Session session, SessionState state, Exception exception) {
             if(session.isOpened()) {
+                //TODO: show user full name as well, underneath profile picture
                 //set profile ID so that photo will be fetched
                 Request.newMeRequest(session, profilePicDisplayCallback).executeAsync();
                 profilePicView.setVisibility(View.VISIBLE);
