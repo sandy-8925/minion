@@ -23,18 +23,39 @@ package org.sanpra.minion;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import com.facebook.Request;
+import com.facebook.Response;
 import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
+import com.facebook.model.GraphUser;
 import com.facebook.widget.ProfilePictureView;
 
 public class FacebookAccountLoginActivity extends Activity
 {
     private ProfilePictureView profilePicView;
 
+    private Request.GraphUserCallback profilePicDisplayCallback = new Request.GraphUserCallback() {
+        @Override
+        public void onCompleted(GraphUser user, Response response) {
+            String userProfileId =  user.getId();
+            profilePicView.setProfileId(userProfileId);
+        }
+    };
+
     private Session.StatusCallback callback = new Session.StatusCallback() {
         @Override
         public void call(Session session, SessionState state, Exception exception) {
+            if(session.isOpened()) {
+                //set profile ID so that photo will be fetched
+                Request.newMeRequest(session, profilePicDisplayCallback).executeAsync();
+                profilePicView.setVisibility(View.VISIBLE);
+            }
+            else if(session.isClosed()) {
+                profilePicView.setVisibility(View.INVISIBLE);
+                profilePicView.setProfileId(null);
+            }
         }
     };
 
