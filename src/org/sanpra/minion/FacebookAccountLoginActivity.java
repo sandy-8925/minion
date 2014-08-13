@@ -26,9 +26,11 @@ import android.os.Bundle;
 import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
+import com.facebook.widget.ProfilePictureView;
 
 public class FacebookAccountLoginActivity extends Activity
 {
+    private ProfilePictureView profilePicView;
 
     private Session.StatusCallback callback = new Session.StatusCallback() {
         @Override
@@ -47,6 +49,8 @@ public class FacebookAccountLoginActivity extends Activity
         uiLifecycleHelper.onCreate(savedInstanceState);
 
         setContentView(R.layout.main);
+
+        profilePicView = (ProfilePictureView) findViewById(R.id.profilepic);
     }
 
     @Override
