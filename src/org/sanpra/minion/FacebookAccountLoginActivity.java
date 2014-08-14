@@ -35,29 +35,10 @@ import com.facebook.widget.ProfilePictureView;
 public final class FacebookAccountLoginActivity extends Activity
 {
     //TODO: Need to handle screen rotation
-    private ProfilePictureView profilePicView;
-
-    private Request.GraphUserCallback profilePicDisplayCallback = new Request.GraphUserCallback() {
-        @Override
-        public void onCompleted(GraphUser user, Response response) {
-            String userProfileId =  user.getId();
-            profilePicView.setProfileId(userProfileId);
-        }
-    };
 
     private Session.StatusCallback callback = new Session.StatusCallback() {
         @Override
         public void call(Session session, SessionState state, Exception exception) {
-            if(session.isOpened()) {
-                //TODO: show user full name as well, underneath profile picture
-                //set profile ID so that photo will be fetched
-                Request.newMeRequest(session, profilePicDisplayCallback).executeAsync();
-                profilePicView.setVisibility(View.VISIBLE);
-            }
-            else if(session.isClosed()) {
-                profilePicView.setVisibility(View.INVISIBLE);
-                profilePicView.setProfileId(null);
-            }
         }
     };
 
@@ -72,8 +53,6 @@ public final class FacebookAccountLoginActivity extends Activity
         uiLifecycleHelper.onCreate(savedInstanceState);
 
         setContentView(R.layout.main);
-
-        profilePicView = (ProfilePictureView) findViewById(R.id.profilepic);
     }
 
     @Override
