@@ -20,13 +20,14 @@
 
 package org.sanpra.minion;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import com.facebook.Session;
 import com.facebook.SessionState;
+import com.facebook.widget.UserSettingsFragment;
 
-public final class FacebookAccountLoginActivity extends Activity
+public final class FacebookAccountLoginActivity extends FragmentActivity
 {
     //TODO: Need to handle screen rotation
 
@@ -36,6 +37,7 @@ public final class FacebookAccountLoginActivity extends Activity
         }
     };
 
+    UserSettingsFragment fbLoginFragment;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -43,10 +45,12 @@ public final class FacebookAccountLoginActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+         fbLoginFragment = (UserSettingsFragment) getSupportFragmentManager().findFragmentById(R.id.fbLoginFragment);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        fbLoginFragment.onActivityResult(requestCode, resultCode, data);
     }
 }
