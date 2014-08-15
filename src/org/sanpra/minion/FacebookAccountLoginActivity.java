@@ -25,7 +25,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import com.facebook.Session;
 import com.facebook.SessionState;
-import com.facebook.UiLifecycleHelper;
 
 public final class FacebookAccountLoginActivity extends Activity
 {
@@ -37,46 +36,17 @@ public final class FacebookAccountLoginActivity extends Activity
         }
     };
 
-    private UiLifecycleHelper uiLifecycleHelper;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-
-        uiLifecycleHelper = new UiLifecycleHelper(this, callback);
-        uiLifecycleHelper.onCreate(savedInstanceState);
-
         setContentView(R.layout.main);
-    }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        uiLifecycleHelper.onSaveInstanceState(outState);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        uiLifecycleHelper.onPause();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        uiLifecycleHelper.onResume();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        uiLifecycleHelper.onDestroy();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        uiLifecycleHelper.onActivityResult(requestCode, resultCode, data);
     }
 }
