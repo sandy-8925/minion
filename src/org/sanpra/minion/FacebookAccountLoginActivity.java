@@ -29,7 +29,6 @@ import com.facebook.widget.UserSettingsFragment;
 
 public final class FacebookAccountLoginActivity extends FragmentActivity
 {
-    //TODO: Need to handle screen rotation
 
     private Session.StatusCallback callback = new Session.StatusCallback() {
         @Override
