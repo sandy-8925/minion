@@ -27,6 +27,7 @@ import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.widget.UserSettingsFragment;
 
+//TODO: Make sure only once instance of activity is created, and it's only in this process
 public final class FacebookAccountLoginActivity extends FragmentActivity
 {
 
