@@ -33,6 +33,9 @@ public final class FacebookAccountLoginActivity extends FragmentActivity
     private Session.StatusCallback fbSessionStatusCallback = new Session.StatusCallback() {
         @Override
         public void call(Session session, SessionState state, Exception exception) {
+            if(session.isOpened()) {
+                FacebookAccount.setSession(session);
+            }
         }
     };
 
