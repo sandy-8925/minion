@@ -45,6 +45,7 @@ public final class FacebookAccountLoginActivity extends FragmentActivity
         setContentView(R.layout.main);
 
         fbLoginFragment = (UserSettingsFragment) getSupportFragmentManager().findFragmentById(R.id.fbLoginFragment);
+        fbLoginFragment.setSessionStatusCallback(callback);
     }
 
     @Override
