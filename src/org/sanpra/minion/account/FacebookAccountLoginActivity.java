@@ -18,7 +18,7 @@
 
  */
 
-package org.sanpra.minion;
+package org.sanpra.minion.account;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,6 +26,7 @@ import android.support.v4.app.FragmentActivity;
 import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.widget.UserSettingsFragment;
+import org.sanpra.minion.R;
 
 //TODO: Make sure only once instance of activity is created, and it's only in this process
 public final class FacebookAccountLoginActivity extends FragmentActivity

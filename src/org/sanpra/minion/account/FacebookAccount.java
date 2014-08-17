@@ -1,4 +1,4 @@
-package org.sanpra.minion;
+package org.sanpra.minion.account;
 
 import com.facebook.Session;
 
