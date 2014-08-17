@@ -30,7 +30,7 @@ import com.facebook.widget.UserSettingsFragment;
 public final class FacebookAccountLoginActivity extends FragmentActivity
 {
 
-    private Session.StatusCallback callback = new Session.StatusCallback() {
+    private Session.StatusCallback fbSessionStatusCallback = new Session.StatusCallback() {
         @Override
         public void call(Session session, SessionState state, Exception exception) {
         }
@@ -45,7 +45,7 @@ public final class FacebookAccountLoginActivity extends FragmentActivity
         setContentView(R.layout.main);
 
         fbLoginFragment = (UserSettingsFragment) getSupportFragmentManager().findFragmentById(R.id.fbLoginFragment);
-        fbLoginFragment.setSessionStatusCallback(callback);
+        fbLoginFragment.setSessionStatusCallback(fbSessionStatusCallback);
     }
 
     @Override
