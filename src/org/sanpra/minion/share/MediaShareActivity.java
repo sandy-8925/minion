@@ -24,11 +24,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import org.sanpra.minion.R;
 
 public final class MediaShareActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.media_share_activity_layout);
 
         Intent launchingIntent = getIntent();
         Uri imageData = launchingIntent.getParcelableExtra(Intent.EXTRA_STREAM);
