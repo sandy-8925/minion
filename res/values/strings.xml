@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">Minion</string>
     <string name="facebook_app_id">675632625864689</string>
+    <string name="media_share_photos_will_be_uploaded">The following photos will be uploaded:</string>
 </resources>
