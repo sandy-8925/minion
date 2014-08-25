@@ -47,7 +47,7 @@ public final class FacebookAccountLoginActivity extends FragmentActivity
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.fb_account_login_layout);
 
         fbLoginFragment = (UserSettingsFragment) getSupportFragmentManager().findFragmentById(R.id.fbLoginFragment);
         fbLoginFragment.setPublishPermissions("publish_actions");
