@@ -40,7 +40,7 @@ public final class MediaShareActivity extends Activity {
         Intent launchingIntent = getIntent();
         if(launchingIntent.getAction().equals("android.intent.action.SEND")) {
             Uri imageData = launchingIntent.getParcelableExtra(Intent.EXTRA_STREAM);
-            ((TextView) findViewById(R.id.photoListText)).setText(imageData.toString());
+            ((TextView) findViewById(R.id.mediaListText)).setText(imageData.toString());
         }
     }
 }
