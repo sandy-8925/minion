@@ -45,6 +45,9 @@ public final class MediaShareActivity extends Activity {
         displayMediaList();
     }
 
+    /**
+     * Display list of media (photos and videos) that will be uploaded
+     */
     private void displayMediaList() {
         Intent launchingIntent = getIntent();
         if(launchingIntent.getAction().equals("android.intent.action.SEND")) {
