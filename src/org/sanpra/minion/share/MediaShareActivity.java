@@ -70,6 +70,12 @@ public final class MediaShareActivity extends Activity {
         finish();
     }
 
+    /**
+     * Attempts to locate corresponding file for a given content Uri by querying Android MediaStore
+     * @param imageUri Input Uri
+     * @return A java.io.File object corresponding to imageUri
+     * @throws FileNotFoundException
+     */
     private File getFileForImageURI(Uri imageUri) throws FileNotFoundException {
         android.database.Cursor cursor = getContentResolver().query(imageUri, new String[] {android.provider.MediaStore.Images.Media.DATA}, null, null, null);
         if(cursor.moveToFirst()) {
