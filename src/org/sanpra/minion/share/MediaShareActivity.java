@@ -24,8 +24,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 import org.sanpra.minion.R;
+import org.sanpra.minion.account.FacebookAccount;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public final class MediaShareActivity extends Activity {
 
@@ -45,5 +51,29 @@ public final class MediaShareActivity extends Activity {
             imageData = launchingIntent.getParcelableExtra(Intent.EXTRA_STREAM);
             ((TextView) findViewById(R.id.mediaListText)).setText(imageData.toString());
         }
+    }
+
+    public void uploadMedia(View view) {
+        try {
+            File imageFile = getFileForImageURI(imageData);
+            com.facebook.Request.newUploadPhotoRequest(FacebookAccount.getSession(), imageFile, new com.facebook.Request.Callback() {
+                public void onCompleted(com.facebook.Response response) {
+                    android.util.Log.d("upload", "Media upload completed");
+                }
+            }).executeAsync();
+        } catch (FileNotFoundException e) {
+            Toast.makeText(this, "Unable to get file associated with URI", Toast.LENGTH_LONG).show();
+        }
+        finish();
+    }
+
+    private File getFileForImageURI(Uri imageUri) throws FileNotFoundException {
+        android.database.Cursor cursor = getContentResolver().query(imageUri, new String[] {android.provider.MediaStore.Images.Media.DATA}, null, null, null);
+        if(cursor.moveToFirst()) {
+            String filePath = cursor.getString(cursor.getColumnIndex(android.provider.MediaStore.Images.Media.DATA));
+            return new File(filePath);
+        }
+        else
+            throw new FileNotFoundException();
     }
 }
