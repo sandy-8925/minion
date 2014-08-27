@@ -28,6 +28,9 @@ import android.widget.TextView;
 import org.sanpra.minion.R;
 
 public final class MediaShareActivity extends Activity {
+
+    private Uri imageData;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +42,7 @@ public final class MediaShareActivity extends Activity {
     private void displayMediaList() {
         Intent launchingIntent = getIntent();
         if(launchingIntent.getAction().equals("android.intent.action.SEND")) {
-            Uri imageData = launchingIntent.getParcelableExtra(Intent.EXTRA_STREAM);
+            imageData = launchingIntent.getParcelableExtra(Intent.EXTRA_STREAM);
             ((TextView) findViewById(R.id.mediaListText)).setText(imageData.toString());
         }
     }
