@@ -24,6 +24,7 @@ import com.facebook.Session;
 
 
 public final class FacebookAccount {
+    //TODO: Handle session loss, logout, denial of access etc.
     private static Session session;
 
     private FacebookAccount() {}
