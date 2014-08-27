@@ -24,6 +24,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.widget.TextView;
 import org.sanpra.minion.R;
 
 public final class MediaShareActivity extends Activity {
@@ -32,7 +33,14 @@ public final class MediaShareActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.media_share_activity_layout);
 
+        displayMediaList();
+    }
+
+    private void displayMediaList() {
         Intent launchingIntent = getIntent();
-        Uri imageData = launchingIntent.getParcelableExtra(Intent.EXTRA_STREAM);
+        if(launchingIntent.getAction().equals("android.intent.action.SEND")) {
+            Uri imageData = launchingIntent.getParcelableExtra(Intent.EXTRA_STREAM);
+            ((TextView) findViewById(R.id.photoListText)).setText(imageData.toString());
+        }
     }
 }
