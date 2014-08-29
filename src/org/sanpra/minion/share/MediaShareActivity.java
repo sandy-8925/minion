@@ -27,6 +27,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.facebook.Session;
 import org.sanpra.minion.R;
 import org.sanpra.minion.account.FacebookAccount;
 
@@ -54,6 +55,18 @@ public final class MediaShareActivity extends FragmentActivity {
             imageData = launchingIntent.getParcelableExtra(Intent.EXTRA_STREAM);
             ((TextView) findViewById(R.id.mediaListText)).setText(imageData.toString());
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //check if Facebook Session is still valid - if not, display dialog and finish activity
+        Session fbSession = FacebookAccount.getSession();
+        if(fbSession==null || !fbSession.isOpened()) {
+            NoActiveSessionDialogFragment noActiveSessionDialogFragment = new NoActiveSessionDialogFragment();
+            noActiveSessionDialogFragment.show(getSupportFragmentManager(), "invalid_facebook_session_dialog");
+        }
+
     }
 
     public void uploadMedia(View view) {
