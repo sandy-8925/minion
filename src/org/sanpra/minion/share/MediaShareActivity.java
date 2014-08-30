@@ -43,7 +43,17 @@ public final class MediaShareActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.media_share_activity_layout);
 
+        setUpUserInterface();
         displayMediaList();
+    }
+
+    private void setUpUserInterface() {
+        findViewById(R.id.continueButton).setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                uploadMedia(view);
+            }
+        });
     }
 
     /**
@@ -69,7 +79,7 @@ public final class MediaShareActivity extends FragmentActivity {
 
     }
 
-    public void uploadMedia(View view) {
+    private void uploadMedia(View view) {
         try {
             File imageFile = getFileForImageURI(imageData);
             com.facebook.Request.newUploadPhotoRequest(FacebookAccount.getSession(), imageFile, new com.facebook.Request.Callback() {
