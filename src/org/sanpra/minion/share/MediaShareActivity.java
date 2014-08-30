@@ -26,7 +26,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.facebook.Session;
 import org.sanpra.minion.R;
 import org.sanpra.minion.account.FacebookAccount;
@@ -87,7 +86,7 @@ public final class MediaShareActivity extends FragmentActivity {
                 }
             }).executeAsync();
         } catch (FileNotFoundException e) {
-            Toast.makeText(this, "Unable to get file associated with URI", Toast.LENGTH_LONG).show();
+            //TODO: Notify user that photo/video could not be found
         }
         finish();
     }
