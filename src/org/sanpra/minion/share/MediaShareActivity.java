@@ -36,7 +36,7 @@ import java.io.FileNotFoundException;
 
 public final class MediaShareActivity extends FragmentActivity {
 
-    private Uri imageData;
+    private Uri mediaUri;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,8 +62,8 @@ public final class MediaShareActivity extends FragmentActivity {
     private void displayMediaList() {
         Intent launchingIntent = getIntent();
         if(launchingIntent.getAction().equals("android.intent.action.SEND")) {
-            imageData = launchingIntent.getParcelableExtra(Intent.EXTRA_STREAM);
-            ((TextView) findViewById(R.id.mediaListText)).setText(imageData.toString());
+            mediaUri = launchingIntent.getParcelableExtra(Intent.EXTRA_STREAM);
+            ((TextView) findViewById(R.id.mediaListText)).setText(mediaUri.toString());
         }
     }
 
@@ -80,7 +80,7 @@ public final class MediaShareActivity extends FragmentActivity {
 
     private void uploadMedia() {
         try {
-            File imageFile = getFileForImageURI(imageData);
+            File imageFile = getFileForImageURI(mediaUri);
             com.facebook.Request.newUploadPhotoRequest(FacebookAccount.getSession(), imageFile, new com.facebook.Request.Callback() {
                 public void onCompleted(com.facebook.Response response) {
                     android.util.Log.d("upload", "Media upload completed");
