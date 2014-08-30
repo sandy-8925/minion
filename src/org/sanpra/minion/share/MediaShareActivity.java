@@ -70,6 +70,10 @@ public final class MediaShareActivity extends FragmentActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        checkFacebookAccountStatus();
+    }
+
+    private void checkFacebookAccountStatus() {
         //check if Facebook Session is still valid - if not, display dialog and finish activity
         Session fbSession = FacebookAccount.getSession();
         if(fbSession==null || !fbSession.isOpened()) {
