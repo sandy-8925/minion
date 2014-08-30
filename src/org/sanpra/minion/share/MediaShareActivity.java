@@ -76,7 +76,6 @@ public final class MediaShareActivity extends FragmentActivity {
             NoActiveSessionDialogFragment noActiveSessionDialogFragment = new NoActiveSessionDialogFragment();
             noActiveSessionDialogFragment.show(getSupportFragmentManager(), "invalid_facebook_session_dialog");
         }
-
     }
 
     private void uploadMedia() {
