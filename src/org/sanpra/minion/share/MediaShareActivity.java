@@ -74,8 +74,11 @@ public final class MediaShareActivity extends FragmentActivity {
         checkFacebookAccountStatus();
     }
 
+    /**
+     * Checks if Facebook Session is still valid - if not, displays dialog and finishes activity
+     */
     private void checkFacebookAccountStatus() {
-        //check if Facebook Session is still valid - if not, display dialog and finish activity
+
         Session fbSession = FacebookAccount.getSession();
         if(fbSession==null || !fbSession.isOpened()) {
             NoActiveSessionDialogFragment noActiveSessionDialogFragment = new NoActiveSessionDialogFragment();
