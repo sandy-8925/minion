@@ -78,6 +78,7 @@ public final class MediaShareActivity extends FragmentActivity {
         }
     }
 
+    //TODO: Move this method to class FacebookAccount
     private void uploadMedia(Uri mediaUri) {
         try {
             File imageFile = getFileForImageURI(mediaUri);
