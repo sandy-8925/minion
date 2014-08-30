@@ -94,12 +94,12 @@ public final class MediaShareActivity extends FragmentActivity {
 
     /**
      * Attempts to locate corresponding file for a given content Uri by querying Android MediaStore
-     * @param imageUri Input Uri
-     * @return A java.io.File object corresponding to imageUri
+     * @param mediaUri Input Uri
+     * @return A java.io.File object corresponding to mediaUri
      * @throws FileNotFoundException
      */
-    private File getFileForImageURI(Uri imageUri) throws FileNotFoundException {
-        android.database.Cursor cursor = getContentResolver().query(imageUri, new String[] {android.provider.MediaStore.Images.Media.DATA}, null, null, null);
+    private File getFileForImageURI(Uri mediaUri) throws FileNotFoundException {
+        android.database.Cursor cursor = getContentResolver().query(mediaUri, new String[] {android.provider.MediaStore.Images.Media.DATA}, null, null, null);
         if(cursor.moveToFirst()) {
             String filePath = cursor.getString(cursor.getColumnIndex(android.provider.MediaStore.Images.Media.DATA));
             return new File(filePath);
