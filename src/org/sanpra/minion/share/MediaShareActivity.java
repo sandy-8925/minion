@@ -51,7 +51,7 @@ public final class MediaShareActivity extends FragmentActivity {
         findViewById(R.id.continueButton).setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                uploadMedia(view);
+                uploadMedia();
             }
         });
     }
@@ -79,7 +79,7 @@ public final class MediaShareActivity extends FragmentActivity {
 
     }
 
-    private void uploadMedia(View view) {
+    private void uploadMedia() {
         try {
             File imageFile = getFileForImageURI(imageData);
             com.facebook.Request.newUploadPhotoRequest(FacebookAccount.getSession(), imageFile, new com.facebook.Request.Callback() {
