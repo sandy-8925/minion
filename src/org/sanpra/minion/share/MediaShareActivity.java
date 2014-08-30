@@ -43,6 +43,7 @@ public final class MediaShareActivity extends FragmentActivity {
         setContentView(R.layout.media_share_activity_layout);
 
         setUpUserInterface();
+        checkFacebookAccountStatus();
         displayMediaList();
     }
 
