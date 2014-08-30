@@ -51,6 +51,7 @@ public final class MediaShareActivity extends FragmentActivity {
             @Override
             public void onClick(View view) {
                 uploadMedia(mediaUri);
+                MediaShareActivity.this.finish();
             }
         });
     }
@@ -88,7 +89,6 @@ public final class MediaShareActivity extends FragmentActivity {
         } catch (FileNotFoundException e) {
             //TODO: Notify user that photo/video could not be found
         }
-        finish();
     }
 
     /**
