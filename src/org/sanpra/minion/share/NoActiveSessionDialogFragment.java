@@ -30,7 +30,7 @@ class NoActiveSessionDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Not signed in")
-               .setMessage("You are currently logged out from your Facebook account. Please login, in order to upload media.")
+               .setMessage("You are currently logged out from your Facebook account. Please login, in order to upload photos and videos.")
                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                    @Override
                    public void onClick(DialogInterface dialog, int which) {
