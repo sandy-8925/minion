@@ -83,6 +83,7 @@ public final class MediaShareActivity extends FragmentActivity {
             File imageFile = getFileForImageURI(mediaUri);
             com.facebook.Request.newUploadPhotoRequest(FacebookAccount.getSession(), imageFile, new com.facebook.Request.Callback() {
                 public void onCompleted(com.facebook.Response response) {
+                    //TODO: Check response, and notify user if upload was successful or unsuccessful (notifications?)
                     android.util.Log.d("upload", "Media upload completed");
                 }
             }).executeAsync();
