@@ -52,7 +52,6 @@ public final class FacebookAccount {
         return false;
     }
 
-    //TODO: Move this method to class FacebookAccount
     public static void uploadImage(File imageFile) {
         try {
             com.facebook.Request.newUploadPhotoRequest(session, imageFile, new com.facebook.Request.Callback() {
