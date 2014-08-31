@@ -22,7 +22,9 @@ package org.sanpra.minion.account;
 
 import com.facebook.Session;
 
-
+/**
+ * Holds all Facebook account related methods and data
+ */
 public final class FacebookAccount {
     //TODO: Handle session loss, logout, denial of access etc.
     private static Session session;
