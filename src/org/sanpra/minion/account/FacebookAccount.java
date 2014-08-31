@@ -34,10 +34,6 @@ public final class FacebookAccount {
 
     private FacebookAccount() {}
 
-    private static Session getSession() {
-        return session;
-    }
-
     static void setSession(Session newSession) {
         session = newSession;
     }
