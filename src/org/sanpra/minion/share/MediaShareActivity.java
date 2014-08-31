@@ -26,7 +26,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.TextView;
-import com.facebook.Session;
 import org.sanpra.minion.R;
 import org.sanpra.minion.account.FacebookAccount;
 
@@ -86,8 +85,6 @@ public final class MediaShareActivity extends FragmentActivity {
      * Checks if Facebook Session is still valid - if not, displays dialog and finishes activity
      */
     private void checkFacebookAccountStatus() {
-
-        Session fbSession = FacebookAccount.getSession();
         if(FacebookAccount.isSessionUsable()) {
             NoActiveSessionDialogFragment noActiveSessionDialogFragment = new NoActiveSessionDialogFragment();
             noActiveSessionDialogFragment.show(getSupportFragmentManager(), "invalid_facebook_session_dialog");
