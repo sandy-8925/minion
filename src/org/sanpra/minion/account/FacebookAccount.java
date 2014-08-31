@@ -48,6 +48,10 @@ public final class FacebookAccount {
         return false;
     }
 
+    /**
+     * Given an image file, attempts to upload it to Facebook user's account
+     * @param imageFile Image file to be uploaded
+     */
     public static void uploadImage(File imageFile) {
         try {
             com.facebook.Request.newUploadPhotoRequest(session, imageFile, new com.facebook.Request.Callback() {
