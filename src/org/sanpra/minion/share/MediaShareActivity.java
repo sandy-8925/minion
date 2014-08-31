@@ -51,7 +51,7 @@ public final class MediaShareActivity extends FragmentActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    uploadImage(getFileForImageURI(mediaUri));
+                    FacebookAccount.uploadImage(getFileForImageURI(mediaUri));
                 } catch (FileNotFoundException e) {
                     //TODO: notify user that media file wasn't found
                 }
@@ -91,20 +91,6 @@ public final class MediaShareActivity extends FragmentActivity {
         if(FacebookAccount.isSessionUsable()) {
             NoActiveSessionDialogFragment noActiveSessionDialogFragment = new NoActiveSessionDialogFragment();
             noActiveSessionDialogFragment.show(getSupportFragmentManager(), "invalid_facebook_session_dialog");
-        }
-    }
-
-    //TODO: Move this method to class FacebookAccount
-    private static void uploadImage(File imageFile) {
-        try {
-            com.facebook.Request.newUploadPhotoRequest(FacebookAccount.getSession(), imageFile, new com.facebook.Request.Callback() {
-                public void onCompleted(com.facebook.Response response) {
-                    //TODO: Check response, and notify user if upload was successful or unsuccessful (notifications?)
-                    android.util.Log.d("upload", "Media upload completed");
-                }
-            }).executeAsync();
-        } catch (FileNotFoundException e) {
-            //TODO: Notify user that photo/video could not be found
         }
     }
 

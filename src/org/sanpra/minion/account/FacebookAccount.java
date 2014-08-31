@@ -22,6 +22,9 @@ package org.sanpra.minion.account;
 
 import com.facebook.Session;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+
 /**
  * Holds all Facebook account related methods and data
  */
@@ -47,5 +50,19 @@ public final class FacebookAccount {
         if(session!=null && session.isOpened())
             return true;
         return false;
+    }
+
+    //TODO: Move this method to class FacebookAccount
+    public static void uploadImage(File imageFile) {
+        try {
+            com.facebook.Request.newUploadPhotoRequest(getSession(), imageFile, new com.facebook.Request.Callback() {
+                public void onCompleted(com.facebook.Response response) {
+                    //TODO: Check response, and notify user if upload was successful or unsuccessful (notifications?)
+                    android.util.Log.d("upload", "Media upload completed");
+                }
+            }).executeAsync();
+        } catch (FileNotFoundException e) {
+            //TODO: Notify user that photo/video could not be found
+        }
     }
 }
