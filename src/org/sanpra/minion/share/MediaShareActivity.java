@@ -76,7 +76,7 @@ public final class MediaShareActivity extends FragmentActivity {
         /*
             Imagine following: MediaShareActivity is started, user switches to another app, and then comes back
             Meanwhile, user may have logged out of Facebook account in login activity, or session may have expired
-            Either way, we need to ensure that Facebook session is still valid
+            Either way, we need to ensure that Facebook session is still valid when onStart is invoked
          */
         checkFacebookAccountStatus();
     }
