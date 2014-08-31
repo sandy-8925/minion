@@ -55,7 +55,7 @@ public final class FacebookAccount {
     //TODO: Move this method to class FacebookAccount
     public static void uploadImage(File imageFile) {
         try {
-            com.facebook.Request.newUploadPhotoRequest(getSession(), imageFile, new com.facebook.Request.Callback() {
+            com.facebook.Request.newUploadPhotoRequest(session, imageFile, new com.facebook.Request.Callback() {
                 public void onCompleted(com.facebook.Response response) {
                     //TODO: Check response, and notify user if upload was successful or unsuccessful (notifications?)
                     android.util.Log.d("upload", "Media upload completed");
