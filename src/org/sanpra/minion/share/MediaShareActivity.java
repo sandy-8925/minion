@@ -95,7 +95,7 @@ public final class MediaShareActivity extends FragmentActivity {
     }
 
     //TODO: Move this method to class FacebookAccount
-    private void uploadImage(File imageFile) {
+    private static void uploadImage(File imageFile) {
         try {
             com.facebook.Request.newUploadPhotoRequest(FacebookAccount.getSession(), imageFile, new com.facebook.Request.Callback() {
                 public void onCompleted(com.facebook.Response response) {
