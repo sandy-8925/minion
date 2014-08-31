@@ -34,7 +34,7 @@ public final class FacebookAccount {
 
     private FacebookAccount() {}
 
-    public static Session getSession() {
+    private static Session getSession() {
         return session;
     }
 
