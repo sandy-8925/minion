@@ -50,7 +50,11 @@ public final class MediaShareActivity extends FragmentActivity {
         findViewById(R.id.continueButton).setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                uploadImage(mediaUri);
+                try {
+                    uploadImage(getFileForImageURI(mediaUri));
+                } catch (FileNotFoundException e) {
+                    //TODO: notify user that media file wasn't found
+                }
                 MediaShareActivity.this.finish();
             }
         });
@@ -91,9 +95,8 @@ public final class MediaShareActivity extends FragmentActivity {
     }
 
     //TODO: Move this method to class FacebookAccount
-    private void uploadImage(Uri mediaUri) {
+    private void uploadImage(File imageFile) {
         try {
-            File imageFile = getFileForImageURI(mediaUri);
             com.facebook.Request.newUploadPhotoRequest(FacebookAccount.getSession(), imageFile, new com.facebook.Request.Callback() {
                 public void onCompleted(com.facebook.Response response) {
                     //TODO: Check response, and notify user if upload was successful or unsuccessful (notifications?)
