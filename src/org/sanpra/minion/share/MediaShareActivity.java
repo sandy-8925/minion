@@ -34,6 +34,7 @@ import java.io.FileNotFoundException;
 
 public final class MediaShareActivity extends FragmentActivity {
 
+    private static final NoActiveSessionDialogFragment NO_ACTIVE_SESSION_DIALOG_FRAGMENT = new NoActiveSessionDialogFragment();
     private Uri mediaUri;
 
     @Override
@@ -87,7 +88,7 @@ public final class MediaShareActivity extends FragmentActivity {
      */
     private void checkFacebookAccountStatus() {
         if(!FacebookAccount.isSessionUsable()) {
-            (new NoActiveSessionDialogFragment()).show(getSupportFragmentManager(), "invalid_facebook_session_dialog");
+            NO_ACTIVE_SESSION_DIALOG_FRAGMENT.show(getSupportFragmentManager(), "invalid_facebook_session_dialog");
         }
     }
 
