@@ -53,7 +53,8 @@ public final class MediaShareActivity extends FragmentActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    FacebookAccount.uploadImage(getFileForImageURI(mediaUri));
+                    File mediaFile = getFileForImageURI(mediaUri);
+                    FacebookAccount.uploadImage(mediaFile);
                 } catch (FileNotFoundException e) {
                     //TODO: notify user that media file wasn't found
                 }
