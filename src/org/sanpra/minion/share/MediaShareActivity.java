@@ -23,6 +23,7 @@ package org.sanpra.minion.share;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.TextView;
@@ -34,7 +35,7 @@ import java.io.FileNotFoundException;
 
 public final class MediaShareActivity extends FragmentActivity {
 
-    private static final NoActiveSessionDialogFragment NO_ACTIVE_SESSION_DIALOG_FRAGMENT = new NoActiveSessionDialogFragment();
+    private static final DialogFragment NO_ACTIVE_SESSION_DIALOG_FRAGMENT = new NoActiveSessionDialogFragment();
     private Uri mediaUri;
 
     @Override
