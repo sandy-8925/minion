@@ -52,16 +52,12 @@ public final class FacebookAccount {
      * Given an image file, attempts to upload it to Facebook user's account
      * @param imageFile Image file to be uploaded
      */
-    public static void uploadImage(File imageFile) {
-        try {
+    public static void uploadImage(File imageFile) throws FileNotFoundException {
             com.facebook.Request.newUploadPhotoRequest(session, imageFile, new com.facebook.Request.Callback() {
                 public void onCompleted(com.facebook.Response response) {
                     //TODO: Check response, and notify user if upload was successful or unsuccessful (notifications?)
                     android.util.Log.d("upload", "Media upload completed");
                 }
             }).executeAsync();
-        } catch (FileNotFoundException e) {
-            //TODO: Notify user that photo/video could not be found
-        }
     }
 }
