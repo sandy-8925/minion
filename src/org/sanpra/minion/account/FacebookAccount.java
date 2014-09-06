@@ -40,7 +40,7 @@ public final class FacebookAccount {
 
     /**
      * Checks if Facebook session is usable(logged in to user account and can be used for API calls)
-     * @return True, if Facebook session is usable, and false if not
+     * @return True if Facebook session is usable, and false if not
      */
     public static boolean isSessionUsable() {
         if(session!=null && session.isOpened())
