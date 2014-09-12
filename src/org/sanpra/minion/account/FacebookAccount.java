@@ -20,11 +20,18 @@
 
 package org.sanpra.minion.account;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.support.v4.app.NotificationCompat;
+import com.facebook.Response;
 import com.facebook.Session;
+import org.sanpra.minion.R;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 
+//TODO: Investigate if this class' functionality should be moved to an Android Service
 /**
  * Holds all Facebook account related methods and data
  */
@@ -52,12 +59,48 @@ public final class FacebookAccount {
      * Given an image file, attempts to upload it to Facebook user's account
      * @param imageFile Image file to be uploaded
      */
-    public static void uploadImage(File imageFile) throws FileNotFoundException {
-            com.facebook.Request.newUploadPhotoRequest(session, imageFile, new com.facebook.Request.Callback() {
-                public void onCompleted(com.facebook.Response response) {
-                    //TODO: Check response, and notify user if upload was successful or unsuccessful (notifications?)
-                    android.util.Log.d("upload", "Media upload completed");
-                }
-            }).executeAsync();
+    public static void uploadImage(File imageFile, final Context context) throws FileNotFoundException {
+            com.facebook.Request.newUploadPhotoRequest(session, imageFile, new UploadPhotoRequestCallback(context)).executeAsync();
     }
+
+    private final static class UploadPhotoRequestCallback implements com.facebook.Request.Callback {
+
+        private Notification uploadErrorNotification;
+        private Notification uploadSuccessNotification;
+        private NotificationManager notificationManager;
+
+        UploadPhotoRequestCallback(Context applicationContext) {
+            uploadErrorNotification = new NotificationCompat.Builder(applicationContext)
+                                    .setContentTitle("Unable to upload photo")
+                                    .setContentText("Facebook server returned error in response")
+                                    .setSmallIcon(R.drawable.ic_launcher)
+                                    .setAutoCancel(true)
+                                    .setTicker("Unable to upload photo to Facebook")
+                                    .setDefaults(Notification.DEFAULT_SOUND)
+                                    .build();
+
+            uploadSuccessNotification = new NotificationCompat.Builder(applicationContext)
+                                        .setContentTitle("Photo uploaded successfully")
+                                        .setContentText("")
+                                        .setSmallIcon(R.drawable.ic_launcher)
+                                        .setAutoCancel(true)
+                                        .setDefaults(Notification.DEFAULT_SOUND)
+                                        .build();
+
+            notificationManager = (NotificationManager) applicationContext.getSystemService(Context.NOTIFICATION_SERVICE);
+        }
+
+        @Override
+        public void onCompleted(Response response) {
+                if(response.getError() != null) {
+                    notificationManager.notify(1, uploadErrorNotification);
+                    android.util.Log.d("upload", "Media upload failed");
+                }
+                else {
+                    notificationManager.notify(2, uploadSuccessNotification);
+                    android.util.Log.d("upload", "Media upload completed successfully");
+                }
+        }
+    }
+
 }
