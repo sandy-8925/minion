@@ -49,18 +49,6 @@ public final class MediaShareActivity extends FragmentActivity {
     }
 
     private void setUpUserInterface() {
-        findViewById(R.id.continueButton).setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    File mediaFile = getFileForImageURI(mediaUri);
-                    FacebookAccount.uploadImage(mediaFile, getApplicationContext());
-                } catch (FileNotFoundException e) {
-                    //TODO: notify user that media file wasn't found
-                }
-                MediaShareActivity.this.finish();
-            }
-        });
     }
 
     /**
@@ -94,7 +82,15 @@ public final class MediaShareActivity extends FragmentActivity {
         }
     }
 
-
+    public void uploadMedia(View view) {
+        try {
+            File mediaFile = getFileForImageURI(mediaUri);
+            FacebookAccount.uploadImage(mediaFile, getApplicationContext());
+        } catch (FileNotFoundException e) {
+            //TODO: notify user that media file wasn't found
+        }
+        MediaShareActivity.this.finish();
+    }
 
     /**
      * Attempts to locate corresponding file for a given content Uri by querying Android MediaStore
