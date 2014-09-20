@@ -85,7 +85,7 @@ public final class MediaShareActivity extends FragmentActivity {
         } catch (FileNotFoundException e) {
             //TODO: notify user that media file wasn't found
         }
-        MediaShareActivity.this.finish();
+        finish();
     }
 
     /**
