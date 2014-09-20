@@ -52,10 +52,8 @@ public final class MediaShareActivity extends FragmentActivity {
      */
     private void displayMediaList() {
         Intent launchingIntent = getIntent();
-        if(launchingIntent.getAction().equals("android.intent.action.SEND")) {
-            mediaUri = launchingIntent.getParcelableExtra(Intent.EXTRA_STREAM);
-            ((TextView) findViewById(R.id.mediaListText)).setText(mediaUri.toString());
-        }
+        mediaUri = launchingIntent.getParcelableExtra(Intent.EXTRA_STREAM);
+        ((TextView) findViewById(R.id.mediaListText)).setText(mediaUri.toString());
     }
 
     @Override
