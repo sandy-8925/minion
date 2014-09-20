@@ -44,11 +44,7 @@ public final class MediaShareActivity extends FragmentActivity {
         setContentView(R.layout.media_share_activity_layout);
 
         //TODO: Validate content Uri stored in Intent
-        setUpUserInterface();
         displayMediaList();
-    }
-
-    private void setUpUserInterface() {
     }
 
     /**
