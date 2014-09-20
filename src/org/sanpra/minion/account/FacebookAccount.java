@@ -63,6 +63,9 @@ public final class FacebookAccount {
             com.facebook.Request.newUploadPhotoRequest(session, imageFile, new UploadPhotoRequestCallback(context)).executeAsync();
     }
 
+    /**
+     * Contains callback methods for handling result of single photo upload
+     */
     private final static class UploadPhotoRequestCallback implements com.facebook.Request.Callback {
 
         private Notification uploadErrorNotification;
