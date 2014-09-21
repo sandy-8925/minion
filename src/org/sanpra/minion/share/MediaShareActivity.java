@@ -58,8 +58,8 @@ public final class MediaShareActivity extends FragmentActivity {
     }
 
     private void extractDataFromIntent() {
-        if(getIntent().getAction().equals("android.intent.action.SEND")) {
-            Intent launchingIntent = getIntent();
+        Intent launchingIntent = getIntent();
+        if(launchingIntent.getAction().equals("android.intent.action.SEND")) {
             mediaUri = launchingIntent.getParcelableExtra(Intent.EXTRA_STREAM);
         }
     }
