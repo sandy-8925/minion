@@ -44,6 +44,7 @@ public final class MediaShareActivity extends FragmentActivity {
         setContentView(R.layout.media_share_activity_layout);
 
         //TODO: Validate content Uri stored in Intent (can specify restrictions in intent filter in manifest)
+        extractDataFromIntent();
         displayMediaList();
     }
 
@@ -51,7 +52,6 @@ public final class MediaShareActivity extends FragmentActivity {
      * Display list of media (photos and videos) that will be uploaded
      */
     private void displayMediaList() {
-        extractDataFromIntent();
         ((TextView) findViewById(R.id.mediaListText)).setText(mediaUri.toString());
     }
 
