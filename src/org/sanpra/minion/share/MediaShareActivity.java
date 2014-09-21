@@ -20,6 +20,7 @@
 
 package org.sanpra.minion.share;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -106,10 +107,11 @@ public final class MediaShareActivity extends FragmentActivity {
     }
 
     public void uploadMedia(View view) {
+        final Context applicationContext = getApplicationContext();
         for(Uri uri : mediaUriList) {
             try {
                 File mediaFile = getFileForImageURI(uri);
-                FacebookAccount.uploadImage(mediaFile, getApplicationContext());
+                FacebookAccount.uploadImage(mediaFile, applicationContext);
             } catch (FileNotFoundException e) {
                 //TODO: notify user that media file wasn't found
             }
