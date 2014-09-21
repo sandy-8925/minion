@@ -58,6 +58,9 @@ public final class MediaShareActivity extends FragmentActivity {
         ((TextView) findViewById(R.id.mediaListText)).setText(buildUriDisplayString(mediaUriList));
     }
 
+    /**
+     * Checks intent action and extracts data from the intent
+     */
     private void extractDataFromIntent() {
         Intent launchingIntent = getIntent();
         if(launchingIntent.getAction().equals("android.intent.action.SEND")) {
