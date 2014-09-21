@@ -39,7 +39,6 @@ import java.util.Collection;
 public final class MediaShareActivity extends FragmentActivity {
 
     private static final DialogFragment NO_ACTIVE_SESSION_DIALOG_FRAGMENT = new NoActiveSessionDialogFragment();
-    private Uri mediaUri;
     private Collection<Uri> mediaUriList;
 
     @Override
@@ -65,7 +64,7 @@ public final class MediaShareActivity extends FragmentActivity {
     private void extractDataFromIntent() {
         Intent launchingIntent = getIntent();
         if(launchingIntent.getAction().equals("android.intent.action.SEND")) {
-            mediaUri = launchingIntent.getParcelableExtra(Intent.EXTRA_STREAM);
+            Uri mediaUri = launchingIntent.getParcelableExtra(Intent.EXTRA_STREAM);
             mediaUriList = new ArrayList<Uri>();
             mediaUriList.add(mediaUri);
         }
