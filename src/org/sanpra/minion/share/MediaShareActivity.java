@@ -63,10 +63,9 @@ public final class MediaShareActivity extends FragmentActivity {
      * @param intent
      */
     private void extractUriListFromIntent(Intent intent) {
-        Collection<Uri> uriList;
+        Collection<Uri> uriList = new ArrayList<Uri>();
         if(intent.getAction().equals("android.intent.action.SEND")) {
             Uri mediaUri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
-            uriList = new ArrayList<Uri>();
             uriList.add(mediaUri);
             mediaUriList = uriList;
         }
