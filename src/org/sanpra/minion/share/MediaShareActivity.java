@@ -32,6 +32,7 @@ import org.sanpra.minion.account.FacebookAccount;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Collection;
 
 public final class MediaShareActivity extends FragmentActivity {
@@ -61,6 +62,8 @@ public final class MediaShareActivity extends FragmentActivity {
         Intent launchingIntent = getIntent();
         if(launchingIntent.getAction().equals("android.intent.action.SEND")) {
             mediaUri = launchingIntent.getParcelableExtra(Intent.EXTRA_STREAM);
+            mediaUriList = new ArrayList<Uri>();
+            mediaUriList.add(mediaUri);
         }
     }
 
