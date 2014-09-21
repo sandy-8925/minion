@@ -106,11 +106,13 @@ public final class MediaShareActivity extends FragmentActivity {
     }
 
     public void uploadMedia(View view) {
-        try {
-            File mediaFile = getFileForImageURI(mediaUri);
-            FacebookAccount.uploadImage(mediaFile, getApplicationContext());
-        } catch (FileNotFoundException e) {
-            //TODO: notify user that media file wasn't found
+        for(Uri uri : mediaUriList) {
+            try {
+                File mediaFile = getFileForImageURI(uri);
+                FacebookAccount.uploadImage(mediaFile, getApplicationContext());
+            } catch (FileNotFoundException e) {
+                //TODO: notify user that media file wasn't found
+            }
         }
         finish();
     }
