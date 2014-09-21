@@ -47,7 +47,7 @@ public final class MediaShareActivity extends FragmentActivity {
         setContentView(R.layout.media_share_activity_layout);
 
         //TODO: Validate content Uri stored in Intent (can specify restrictions in intent filter in manifest)
-        extractUriListFromIntent(getIntent());
+        mediaUriList = extractUriListFromIntent(getIntent());
         displayMediaList();
     }
 
@@ -60,15 +60,16 @@ public final class MediaShareActivity extends FragmentActivity {
 
     /**
      * Checks intent action and extracts data from the intent
-     * @param intent
+     * @param intent Intent from which data is to be extracted
+     * @return Returns a collection of URIs extracted from the intent. If none are found, an empty list is returned.
      */
-    private void extractUriListFromIntent(Intent intent) {
+    private Collection<Uri> extractUriListFromIntent(Intent intent) {
         Collection<Uri> uriList = new ArrayList<Uri>();
         if(intent.getAction().equals("android.intent.action.SEND")) {
             Uri mediaUri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
             uriList.add(mediaUri);
-            mediaUriList = uriList;
         }
+        return uriList;
     }
 
     /**
