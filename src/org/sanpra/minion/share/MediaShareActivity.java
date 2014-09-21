@@ -63,7 +63,7 @@ public final class MediaShareActivity extends FragmentActivity {
      * @param intent Intent from which data is to be extracted
      * @return Returns a collection of URIs extracted from the intent. If none are found, an empty list is returned.
      */
-    private Collection<Uri> extractUriListFromIntent(Intent intent) {
+    private static Collection<Uri> extractUriListFromIntent(Intent intent) {
         Collection<Uri> uriList = new ArrayList<Uri>();
         if(intent.getAction().equals("android.intent.action.SEND")) {
             Uri mediaUri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
