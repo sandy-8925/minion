@@ -32,11 +32,13 @@ import org.sanpra.minion.account.FacebookAccount;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Collection;
 
 public final class MediaShareActivity extends FragmentActivity {
 
     private static final DialogFragment NO_ACTIVE_SESSION_DIALOG_FRAGMENT = new NoActiveSessionDialogFragment();
     private Uri mediaUri;
+    private Collection<Uri> mediaUriList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
