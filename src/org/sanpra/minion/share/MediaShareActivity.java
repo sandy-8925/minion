@@ -51,9 +51,13 @@ public final class MediaShareActivity extends FragmentActivity {
      * Display list of media (photos and videos) that will be uploaded
      */
     private void displayMediaList() {
+        extractDataFromIntent();
+        ((TextView) findViewById(R.id.mediaListText)).setText(mediaUri.toString());
+    }
+
+    private void extractDataFromIntent() {
         Intent launchingIntent = getIntent();
         mediaUri = launchingIntent.getParcelableExtra(Intent.EXTRA_STREAM);
-        ((TextView) findViewById(R.id.mediaListText)).setText(mediaUri.toString());
     }
 
     @Override
