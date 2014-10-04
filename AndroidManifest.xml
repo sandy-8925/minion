@@ -3,7 +3,7 @@
       package="org.sanpra.minion"
       android:versionCode="1"
       android:versionName="1.0" >
-    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="19" />
+    <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="19" />
     <uses-permission android:name="android.permission.INTERNET" />
     <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id" />
