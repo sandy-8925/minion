@@ -24,6 +24,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
@@ -114,9 +115,9 @@ public final class MediaShareActivity extends FragmentActivity {
 
     public void uploadMedia(View view) {
         final Context applicationContext = getApplicationContext();
-        for(Uri uri : mediaUriList) {
+        Collection<File> mediaFileList = getFilesForImageUriList(mediaUriList);
+        for(File mediaFile : mediaFileList) {
             try {
-                File mediaFile = getFileForImageURI(uri);
                 FacebookAccount.uploadImage(mediaFile, applicationContext);
             } catch (FileNotFoundException e) {
                 //TODO: notify user that media file wasn't found
@@ -143,5 +144,31 @@ public final class MediaShareActivity extends FragmentActivity {
         }
         else
             throw new FileNotFoundException();
+    }
+
+    private Collection<File> getFilesForImageUriList(Collection<Uri> imageUriList) {
+        Collection<File> fileList = new ArrayList<File>();
+
+        /*
+            This method of determining file path for a given content URI, only works for images from the Android gallery app.
+            Must figure out a generic way to determine file paths, or: accept only file URIs, and get user to pick photos from  Android gallery, to upload photos from gallery
+        */
+        StringBuilder idList = new StringBuilder();
+        idList.append("( ");
+        for(Uri imageUri : imageUriList) {
+            idList.append(imageUri.getLastPathSegment()).append(",");
+        }
+        //remove last , and then add closing bracket
+        idList.deleteCharAt(idList.length()-1).append(" )");
+        android.database.Cursor cursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[]{android.provider.MediaStore.Images.Media.DATA}, "_ID in " + idList.toString(), null, null);
+        cursor.moveToFirst();
+        do {
+            String filePath = cursor.getString(cursor.getColumnIndex(android.provider.MediaStore.Images.Media.DATA));
+            fileList.add(new File(filePath));
+        } while(cursor.moveToNext());
+
+        cursor.close();
+
+        return  fileList;
     }
 }
