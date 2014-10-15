@@ -160,7 +160,8 @@ public final class MediaShareActivity extends FragmentActivity {
         }
         //remove last , and then add closing bracket
         idListBuilder.deleteCharAt(idListBuilder.length()-1).append(" )");
-        android.database.Cursor cursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[]{android.provider.MediaStore.Images.Media.DATA}, "_ID in " + idListBuilder.toString(), null, null);
+        String idList = idListBuilder.toString();
+        android.database.Cursor cursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[]{android.provider.MediaStore.Images.Media.DATA}, "_ID in " + idList, null, null);
         cursor.moveToFirst();
         do {
             String filePath = cursor.getString(cursor.getColumnIndex(android.provider.MediaStore.Images.Media.DATA));
