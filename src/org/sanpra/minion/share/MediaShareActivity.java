@@ -153,14 +153,14 @@ public final class MediaShareActivity extends FragmentActivity {
             This method of determining file path for a given content URI, only works for images from the Android gallery app.
             Must figure out a generic way to determine file paths, or: accept only file URIs, and get user to pick photos from  Android gallery, to upload photos from gallery
         */
-        StringBuilder idList = new StringBuilder();
-        idList.append("( ");
+        StringBuilder idListBuilder = new StringBuilder();
+        idListBuilder.append("( ");
         for(Uri imageUri : imageUriList) {
-            idList.append(imageUri.getLastPathSegment()).append(",");
+            idListBuilder.append(imageUri.getLastPathSegment()).append(",");
         }
         //remove last , and then add closing bracket
-        idList.deleteCharAt(idList.length()-1).append(" )");
-        android.database.Cursor cursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[]{android.provider.MediaStore.Images.Media.DATA}, "_ID in " + idList.toString(), null, null);
+        idListBuilder.deleteCharAt(idListBuilder.length()-1).append(" )");
+        android.database.Cursor cursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[]{android.provider.MediaStore.Images.Media.DATA}, "_ID in " + idListBuilder.toString(), null, null);
         cursor.moveToFirst();
         do {
             String filePath = cursor.getString(cursor.getColumnIndex(android.provider.MediaStore.Images.Media.DATA));
