@@ -153,6 +153,21 @@ public final class MediaShareActivity extends FragmentActivity {
         return  fileList;
     }
 
+    /**
+     * The purpose of this method is to create a string containing a list of the IDs of external media
+     * Content URIs. This can be used to fetch information regarding these URIs from the Android OS.
+     * This method accepts a list of URIs, and creates a String containing the last path segments
+     * of the URIs.
+     * The order of the segments in the String is not guaranteed to be the same as the order of URIs
+     * in the list.
+     * @param imageUriList Input list of URIs
+     *
+     * @return  A string containing a bracketed list of the last path segments of the input URIs
+     * in the following format:
+     *      ( URIOneLastPathSegment, URITwoLastPathSegment, URIThreeLastPathSegment, ..... )
+     *
+     *      Returns empty string when imageUriList is null or empty
+     */
     private static String constructIdListString(final Collection<Uri> imageUriList) {
         if(imageUriList == null || imageUriList.isEmpty())
             return "";
