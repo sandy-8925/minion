@@ -127,26 +127,6 @@ public final class MediaShareActivity extends FragmentActivity {
     }
 
     /**
-     * Attempts to locate corresponding file for a given content Uri by querying Android MediaStore
-     * @param mediaUri Input Uri
-     * @return A java.io.File object corresponding to mediaUri
-     * @throws FileNotFoundException
-     */
-    private File getFileForImageURI(Uri mediaUri) throws FileNotFoundException {
-        android.database.Cursor cursor = getContentResolver().query(mediaUri, new String[] {android.provider.MediaStore.Images.Media.DATA}, null, null, null);
-        if(cursor.moveToFirst()) {
-            /*
-            This method of determining file path for a given content URI, only works for images from the Android gallery app.
-            Must figure out a generic way to determine file paths, or: accept only file URIs, and get user to pick photos from  Android gallery, to upload photos from gallery
-             */
-            String filePath = cursor.getString(cursor.getColumnIndex(android.provider.MediaStore.Images.Media.DATA));
-            return new File(filePath);
-        }
-        else
-            throw new FileNotFoundException();
-    }
-
-    /**
      * Attempts to determine corresponding files for a given list of content URIs by querying Android MediaStore
      * @param imageUriList Input list of URIs
      * @return A list of java.io.File objects corresponding to the URIs passed in imageUriList
