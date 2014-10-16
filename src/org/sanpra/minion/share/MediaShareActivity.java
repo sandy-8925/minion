@@ -167,7 +167,7 @@ public final class MediaShareActivity extends FragmentActivity {
     }
 
     private static String constructIdListString(final Collection<Uri> imageUriList) {
-        StringBuilder idListBuilder = new StringBuilder();
+        final StringBuilder idListBuilder = new StringBuilder();
 
         //add opening bracket
         idListBuilder.append("( ");
