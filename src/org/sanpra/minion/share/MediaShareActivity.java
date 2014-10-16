@@ -146,6 +146,11 @@ public final class MediaShareActivity extends FragmentActivity {
             throw new FileNotFoundException();
     }
 
+    /**
+     * Attempts to determine corresponding files for a given list of content URIs by querying Android MediaStore
+     * @param imageUriList Input list of URIs
+     * @return A list of java.io.File objects corresponding to the URIs passed in imageUriList
+     */
     private Collection<File> getFilesForImageUriList(Collection<Uri> imageUriList) {
         Collection<File> fileList = new ArrayList<File>();
 
