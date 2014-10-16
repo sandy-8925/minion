@@ -83,8 +83,8 @@ public final class MediaShareActivity extends FragmentActivity {
      * @param uriList Input collection of Uri objects
      * @return User displayable string, with string representation of each Uri on it's own line
      */
-    private static String buildUriDisplayString(Collection<Uri> uriList) {
-        StringBuilder uriListString = new StringBuilder();
+    private static String buildUriDisplayString(final Collection<Uri> uriList) {
+        final StringBuilder uriListString = new StringBuilder();
 
         for(Uri uri : uriList) {
             uriListString.append(uri.toString()).append('\n');
