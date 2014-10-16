@@ -160,7 +160,7 @@ public final class MediaShareActivity extends FragmentActivity {
      * of the URIs.
      * The order of the segments in the String is not guaranteed to be the same as the order of URIs
      * in the list.
-     * @param imageUriList Input list of URIs
+     * @param imageUriList Input list of URIs. Will not be modified in any way.
      *
      * @return  A string containing a bracketed list of the last path segments of the input URIs
      * in the following format:
