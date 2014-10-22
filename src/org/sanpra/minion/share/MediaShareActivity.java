@@ -170,7 +170,7 @@ public final class MediaShareActivity extends FragmentActivity {
      */
     private static String constructIdListString(final Collection<Uri> imageUriList) {
         if(imageUriList == null || imageUriList.isEmpty())
-            return "";
+            return "()";
 
         final StringBuilder idListBuilder = new StringBuilder();
 
