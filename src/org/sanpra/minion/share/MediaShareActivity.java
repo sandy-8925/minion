@@ -168,7 +168,7 @@ public final class MediaShareActivity extends FragmentActivity {
      *
      *      Returns empty string when imageUriList is null or empty
      */
-    private static String constructIdListString(final Collection<Uri> imageUriList) {
+    static String constructIdListString(final Collection<Uri> imageUriList) {
         if(imageUriList == null || imageUriList.isEmpty())
             return "()";
 
