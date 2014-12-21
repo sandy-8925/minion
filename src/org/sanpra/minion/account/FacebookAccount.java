@@ -72,7 +72,7 @@ public final class FacebookAccount {
         private Notification uploadSuccessNotification;
         private NotificationManager notificationManager;
 
-        UploadPhotoRequestCallback(Context applicationContext) {
+        UploadPhotoRequestCallback(final Context applicationContext) {
             uploadErrorNotification = new NotificationCompat.Builder(applicationContext)
                                     .setContentTitle("Unable to upload photo")
                                     .setContentText("Facebook server returned error in response")
