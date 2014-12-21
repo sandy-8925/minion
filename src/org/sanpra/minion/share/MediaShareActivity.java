@@ -115,7 +115,7 @@ public final class MediaShareActivity extends FragmentActivity {
 
     public void uploadMedia(View view) {
         final Context applicationContext = getApplicationContext();
-        Collection<File> mediaFileList = getFilesForImageUriList(mediaUriList);
+        final Collection<File> mediaFileList = getFilesForImageUriList(mediaUriList);
         for(File mediaFile : mediaFileList) {
             try {
                 FacebookAccount.uploadImage(mediaFile, applicationContext);
