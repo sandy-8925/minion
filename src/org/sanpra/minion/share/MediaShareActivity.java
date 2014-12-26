@@ -21,7 +21,6 @@
 package org.sanpra.minion.share;
 
 import android.app.Notification;
-import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -35,10 +34,8 @@ import android.widget.TextView;
 
 import org.sanpra.minion.R;
 import org.sanpra.minion.account.FacebookAccount;
-import org.sanpra.minion.utils.NotificationUtils;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -121,18 +118,7 @@ public final class MediaShareActivity extends FragmentActivity {
     public void uploadMedia(final View clickedView) {
         final Context applicationContext = getApplicationContext();
         final Collection<File> mediaFileList = getFilesForImageUriList(mediaUriList);
-        final Collection<String> missingFilesList = new ArrayList<String>();
-        for(File mediaFile : mediaFileList) {
-            try {
-                FacebookAccount.uploadImage(mediaFile, applicationContext);
-            } catch (FileNotFoundException exception) {
-                missingFilesList.add(mediaFile.getAbsolutePath());
-            }
-        }
-        if(!missingFilesList.isEmpty()) {
-            final NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            notificationManager.notify(NotificationUtils.FILE_NOT_FOUND_NOTIFICATION_ID, createMissingFilesNotification(missingFilesList));
-        }
+        FacebookAccount.uploadImageCollection(mediaFileList, applicationContext);
         finish();
     }
 
