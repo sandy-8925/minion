@@ -69,7 +69,7 @@ public final class MediaShareActivity extends FragmentActivity {
      * @param intent Intent from which data is to be extracted
      * @return Returns a collection of URIs extracted from the intent. If none are found, an empty list is returned.
      */
-    private static Collection<Uri> extractUriListFromIntent(Intent intent) {
+    private static Collection<Uri> extractUriListFromIntent(final Intent intent) {
         Collection<Uri> uriList = new ArrayList<Uri>();
 
         if(intent.getAction().equals("android.intent.action.SEND")) {
@@ -154,7 +154,7 @@ public final class MediaShareActivity extends FragmentActivity {
      * @param imageUriList Input list of URIs
      * @return A list of java.io.File objects corresponding to the URIs passed in imageUriList
      */
-    private Collection<File> getFilesForImageUriList(Collection<Uri> imageUriList) {
+    private Collection<File> getFilesForImageUriList(final Collection<Uri> imageUriList) {
         Collection<File> fileList = new ArrayList<File>();
 
         /*
