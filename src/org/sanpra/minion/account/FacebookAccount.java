@@ -24,13 +24,16 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.support.v4.app.NotificationCompat;
+
 import com.facebook.Response;
 import com.facebook.Session;
+
 import org.sanpra.minion.R;
 import org.sanpra.minion.utils.NotificationUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Collection;
 
 //TODO: Investigate if this class' functionality should be moved to an Android Service
 /**
@@ -63,6 +66,21 @@ public final class FacebookAccount {
      */
     public static void uploadImage(File imageFile, final Context context) throws FileNotFoundException {
             com.facebook.Request.newUploadPhotoRequest(session, imageFile, new UploadPhotoRequestCallback(context)).executeAsync();
+    }
+
+    /**
+     * Given a list of image files, attempts to upload them to user's Facebook account
+     * @param imageFileList Collection of image files to be uploaded
+     * @param applicationContext Application context
+     */
+    public static void uploadImageCollection(final Collection<File> imageFileList, final Context applicationContext) {
+        for(File imageFile : imageFileList) {
+            try {
+                uploadImage(imageFile, applicationContext);
+            } catch (FileNotFoundException exception) {
+                //TODO: Handle these exceptions
+            }
+        }
     }
 
     /**
