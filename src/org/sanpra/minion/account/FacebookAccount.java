@@ -74,7 +74,7 @@ public final class FacebookAccount {
      * @param applicationContext Application context
      */
     public static void uploadImageCollection(final Collection<File> imageFileList, final Context applicationContext) {
-        for(File imageFile : imageFileList) {
+        for(final File imageFile : imageFileList) {
             try {
                 uploadImage(imageFile, applicationContext);
             } catch (FileNotFoundException exception) {
