@@ -118,7 +118,7 @@ public final class MediaShareActivity extends FragmentActivity {
         }
     }
 
-    public void uploadMedia(View view) {
+    public void uploadMedia(final View clickedView) {
         final Context applicationContext = getApplicationContext();
         final Collection<File> mediaFileList = getFilesForImageUriList(mediaUriList);
         final Collection<String> missingFilesList = new ArrayList<String>();
