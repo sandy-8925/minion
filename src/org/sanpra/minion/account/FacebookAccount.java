@@ -58,6 +58,7 @@ public final class FacebookAccount {
     /**
      * Given an image file, attempts to upload it to Facebook user's account
      * @param imageFile Image file to be uploaded
+     * @param context Application context
      */
     public static void uploadImage(File imageFile, final Context context) throws FileNotFoundException {
             com.facebook.Request.newUploadPhotoRequest(session, imageFile, new UploadPhotoRequestCallback(context)).executeAsync();
