@@ -20,6 +20,8 @@
 
 package org.sanpra.minion.share;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -27,10 +29,13 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.NotificationCompat;
 import android.view.View;
 import android.widget.TextView;
+
 import org.sanpra.minion.R;
 import org.sanpra.minion.account.FacebookAccount;
+import org.sanpra.minion.utils.NotificationUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -116,14 +121,32 @@ public final class MediaShareActivity extends FragmentActivity {
     public void uploadMedia(View view) {
         final Context applicationContext = getApplicationContext();
         final Collection<File> mediaFileList = getFilesForImageUriList(mediaUriList);
+        final Collection<String> missingFilesList = new ArrayList<String>();
         for(File mediaFile : mediaFileList) {
             try {
                 FacebookAccount.uploadImage(mediaFile, applicationContext);
             } catch (FileNotFoundException exception) {
-                //TODO: notify user that media file wasn't found
+                missingFilesList.add(mediaFile.getAbsolutePath());
             }
         }
+        if(!missingFilesList.isEmpty()) {
+            final NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(NotificationUtils.FILE_NOT_FOUND_NOTIFICATION_ID, createMissingFilesNotification(missingFilesList));
+        }
         finish();
+    }
+
+    private Notification createMissingFilesNotification(final Collection<String> missingFilesList) {
+        final NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(getApplicationContext());
+        final StringBuffer notificationText = new StringBuffer("The following files are missing");
+        for(String fileName : missingFilesList) {
+            notificationText.append("\n").append(fileName);
+        }
+
+        notificationBuilder.setContentTitle("Problems during upload");
+        notificationBuilder.setContentText(notificationText);
+        notificationBuilder.setSmallIcon(R.drawable.ic_launcher);
+        return notificationBuilder.build();
     }
 
     /**
