@@ -27,6 +27,7 @@ import android.support.v4.app.NotificationCompat;
 import com.facebook.Response;
 import com.facebook.Session;
 import org.sanpra.minion.R;
+import org.sanpra.minion.utils.NotificationUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -97,11 +98,11 @@ public final class FacebookAccount {
         @Override
         public void onCompleted(Response response) {
                 if(response.getError() != null) {
-                    notificationManager.notify(1, uploadErrorNotification);
+                    notificationManager.notify(NotificationUtils.UPLOAD_ERROR_NOTIFICATION_ID, uploadErrorNotification);
                     android.util.Log.d("upload", "Media upload failed");
                 }
                 else {
-                    notificationManager.notify(2, uploadSuccessNotification);
+                    notificationManager.notify(NotificationUtils.UPLOAD_SUCCESS_NOTIFICATION_ID, uploadSuccessNotification);
                     android.util.Log.d("upload", "Media upload completed successfully");
                 }
         }
