@@ -40,7 +40,7 @@ public final class FacebookAccountLoginActivity extends FragmentActivity
         }
     };
 
-    UserSettingsFragment fbLoginFragment;
+    private UserSettingsFragment fbLoginFragment;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
