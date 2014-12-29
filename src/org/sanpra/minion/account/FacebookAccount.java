@@ -66,7 +66,7 @@ public final class FacebookAccount {
      * @param context Application context
      */
     public static void uploadImage(File imageFile, final Context context) throws FileNotFoundException {
-            com.facebook.Request.newUploadPhotoRequest(session, imageFile, new UploadPhotoRequestCallback(context)).executeAsync();
+            com.facebook.Request.newUploadPhotoRequest(session, imageFile, new ImageUploadRequestCallback(context)).executeAsync();
     }
 
     /**
@@ -76,7 +76,7 @@ public final class FacebookAccount {
      */
     public static void uploadImageCollection(final Collection<File> imageFileList, final Context applicationContext) {
         final RequestBatch imageUploadRequestBatch = new RequestBatch();
-        final UploadPhotoRequestCallback requestCallback = new UploadPhotoRequestCallback(applicationContext);
+        final ImageUploadRequestCallback requestCallback = new ImageUploadRequestCallback(applicationContext);
         for(final File imageFile : imageFileList) {
             try {
                 imageUploadRequestBatch.add(com.facebook.Request.newUploadPhotoRequest(session, imageFile, requestCallback));
@@ -90,13 +90,13 @@ public final class FacebookAccount {
     /**
      * Contains callback methods for handling result of single photo upload
      */
-    private final static class UploadPhotoRequestCallback implements com.facebook.Request.Callback {
+    private final static class ImageUploadRequestCallback implements com.facebook.Request.Callback {
 
         private Notification uploadErrorNotification;
         private Notification uploadSuccessNotification;
         private NotificationManager notificationManager;
 
-        UploadPhotoRequestCallback(final Context applicationContext) {
+        ImageUploadRequestCallback(final Context applicationContext) {
             uploadErrorNotification = new NotificationCompat.Builder(applicationContext)
                                     .setContentTitle("Unable to upload photo")
                                     .setContentText("Facebook server returned error in response")
