@@ -25,6 +25,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.support.v4.app.NotificationCompat;
 
+import com.facebook.RequestBatch;
 import com.facebook.Response;
 import com.facebook.Session;
 
@@ -74,13 +75,16 @@ public final class FacebookAccount {
      * @param applicationContext Application context
      */
     public static void uploadImageCollection(final Collection<File> imageFileList, final Context applicationContext) {
+        final RequestBatch imageUploadRequestBatch = new RequestBatch();
+        final UploadPhotoRequestCallback requestCallback = new UploadPhotoRequestCallback(applicationContext);
         for(final File imageFile : imageFileList) {
             try {
-                uploadImage(imageFile, applicationContext);
+                imageUploadRequestBatch.add(com.facebook.Request.newUploadPhotoRequest(session, imageFile, requestCallback));
             } catch (FileNotFoundException exception) {
                 //TODO: Handle these exceptions
             }
         }
+        imageUploadRequestBatch.executeAsync();
     }
 
     /**
