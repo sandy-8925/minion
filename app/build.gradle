@@ -36,6 +36,10 @@ android {
         targetCompatibility 1.7
     }
 
+    aaptOptions {
+        cruncherEnabled true
+    }
+
     dependencies {
         compile "com.android.support:support-fragment:24.2.1"
     }
