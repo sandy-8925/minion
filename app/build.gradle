@@ -1,0 +1,42 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.3"
+
+    defaultConfig {
+        applicationId "org.sanpra.minion"
+        minSdkVersion 9
+        targetSdkVersion 24
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            useProguard false
+        }
+    }
+
+    dexOptions {
+        preDexLibraries true
+        optimize true
+    }
+
+    compileOptions {
+        incremental true
+        sourceCompatibility 1.7
+        targetCompatibility 1.7
+    }
+
+    dependencies {
+        compile "com.android.support:support-fragment:24.2.1"
+    }
+}
